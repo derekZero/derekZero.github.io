@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Derek Guzman</title>
+<meta name="description" content="Derek Guzman: writer, journalist, and web designer in Austin, Texas.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: oversized italic name over an oxblood field, a manifesto that lights up word by word as you scroll, an essay index with hover decks, then two offers. Dark-first committed look. */
+:root{
+  --oxblood:#2B0E14;
+  --deep:#1E090D;
+  --bone:#F1E8E2;
+  --dim:#B79D99;
+  --gold:#E3B95B;
+  --rule:#5A2A31;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--oxblood);color:var(--bone);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+::selection{background:var(--gold);color:var(--deep)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+header.site nav{display:flex;gap:22px}
+header.site a{text-decoration:none;color:var(--dim)}
+header.site a:hover{color:var(--bone)}
+@media (max-width:600px){header.site nav a:not(:last-child){display:none}}
+
+/* hero */
+.hero{padding-block:30px 70px}
+.name{font-family:var(--display);font-weight:400;font-size:clamp(76px,16vw,232px);line-height:.82;letter-spacing:-.035em;margin:0}
+.name em{font-style:italic;color:var(--gold);padding-right:.04em}
+.name .l{display:block}
+.name .l2{padding-left:clamp(0px,9vw,140px)}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;border-top:1px solid var(--rule);padding-top:20px}
+.hero-meta div{min-width:0}
+.hero-meta .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:6px}
+.hero-meta p{margin:0;font-size:18px}
+@media (max-width:720px){.hero-meta{grid-template-columns:1fr}}
+
+/* manifesto */
+.manifesto{background:var(--deep);padding-block:110px}
+.manifesto p{font-family:var(--display);font-size:clamp(34px,5.2vw,68px);line-height:1.08;letter-spacing:-.01em;margin:0;max-width:22ch;text-wrap:pretty}
+.manifesto .w{color:rgba(241,232,226,.38);transition:color .35s ease}
+.manifesto .w.on{color:var(--bone)}
+.manifesto .w.hl.on{color:var(--gold);font-style:italic}
+
+section{padding-block:90px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(48px,7vw,104px);line-height:.9;letter-spacing:-.03em;margin:0 0 14px}
+h2 em{color:var(--gold)}
+.k2{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:34px}
+.sec-head p{max-width:42ch;color:var(--dim);margin:0}
+
+/* essays */
+.essays{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.essay a{display:grid;grid-template-columns:1fr auto;gap:8px 28px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--rule);text-decoration:none;position:relative}
+.essay h3{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.6vw,62px);line-height:1;letter-spacing:-.02em;margin:0;transition:transform .45s cubic-bezier(.2,.7,.2,1),color .3s ease}
+.essay .tag{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.essay .deck{grid-column:1/-1;margin:0;color:var(--dim);max-width:60ch;font-size:16px}
+.essay a:hover h3,.essay a:focus-visible h3{transform:translateX(18px);color:var(--gold);font-style:italic}
+.sub{display:inline-flex;gap:10px;align-items:center;margin-top:30px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:4px;color:var(--gold)}
+
+/* fiction */
+.fiction{background:var(--bone);color:var(--deep)}
+.fiction .k2{color:#7A5A57}
+.fic-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.fic-title{font-family:var(--mono);font-size:clamp(40px,6.4vw,88px);font-weight:500;letter-spacing:-.04em;line-height:1;margin:10px 0 18px;word-break:break-word}
+.fic-title .cur{display:inline-block;width:.5em;height:.85em;background:var(--oxblood);vertical-align:-.08em;margin-left:.06em;animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.fiction p{font-size:18px;max-width:44ch}
+.meter{border:1px solid #CDBDB6;border-radius:14px;padding:26px;background:#F8F2EE}
+.meter .big{font-family:var(--display);font-size:clamp(70px,9vw,120px);line-height:.9;font-variant-numeric:tabular-nums}
+.meter .bar{height:10px;border-radius:999px;background:#E3D5CE;overflow:hidden;margin:16px 0 10px}
+.meter .bar span{display:block;height:100%;width:0;background:var(--oxblood);transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.meter .cap{margin-top:16px;font-family:var(--mono);font-size:13px;color:#7A5A57;display:flex;justify-content:space-between;gap:10px}
+@media (max-width:800px){.fic-grid{grid-template-columns:1fr}}
+
+/* offers */
+.offers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.offer{background:var(--oxblood);padding:34px 30px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:background .3s ease}
+.offer:hover{background:#34121A}
+.offer h3{font-family:var(--display);font-weight:400;font-size:44px;line-height:1;letter-spacing:-.02em;margin:0}
+.offer p{margin:0;color:var(--dim)}
+.offer ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.offer li{display:flex;gap:10px;align-items:baseline}
+.offer li::before{content:"§";color:var(--gold);font-family:var(--display);font-size:20px;line-height:1}
+@media (max-width:760px){.offers{grid-template-columns:1fr}}
+
+.contact{text-align:left;padding-block:100px 70px}
+.contact h2{font-size:clamp(56px,10vw,150px)}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.pill{font-family:var(--mono);font-size:14px;text-decoration:none;border:1px solid var(--rule);padding:12px 18px;border-radius:999px;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.pill:hover{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+footer .wrap{border-top:1px solid var(--rule);padding-block:24px 34px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.manifesto .w{color:var(--bone)}}
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <a href="#top">Derek Guzman</a>
+    <nav aria-label="Main"><a href="#builds">Builds</a><a href="#essays">Essays</a><a href="#fiction">Fiction</a><a href="#work">Work with me</a></nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <h1 class="name"><span class="l">Derek</span><span class="l l2"><em>Guzman</em></span></h1>
+    <div class="hero-meta">
+      <div><span class="k">Writes</span><p>Essays on political economy, AI, and labor.</p></div>
+      <div><span class="k">Reports</span><p>Freelance journalist based in Austin, Texas.</p></div>
+      <div><span class="k">Builds</span><p>Websites for small businesses, copy included.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" aria-label="About">
+  <div class="wrap">
+    <p id="mani">Most websites fail because nobody wrote them. I build sites the way I write essays: decide what needs to be said, cut everything else, and make the reader want to keep going.</p>
+  </div>
+</section>
+
+<section id="essays">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k2">Magnifica Humanitas · on Substack</span><h2>Selected <em>essays</em></h2></div>
+      <p>Long-form writing on money, machines, and the people both are supposed to serve.</p>
+    </div>
+    <ul class="essays">
+      <li class="essay"><a href="https://derekguzman.substack.com" target="_blank" rel="noopener"><h3>Blessed Are the Debtors</h3><span class="tag">Debt · Theology</span><p class="deck">What thinkers from Benjamin to Lazzarato reveal about debt as a moral order, and who gets forgiven.</p></a></li>
+      <li class="essay"><a href="https://derekguzman.substack.com" target="_blank" rel="noopener"><h3>Blood Data</h3><span class="tag">Data · Extraction</span><p class="deck">On the data economy and what it takes from the people it measures.</p></a></li>
+      <li class="essay"><a href="https://derekguzman.substack.com" target="_blank" rel="noopener"><h3>Whose Apocalypse Is It?</h3><span class="tag">AI · Power</span><p class="deck">Who gets to tell the end-of-the-world story about technology, and who benefits from it.</p></a></li>
+      <li class="essay"><a href="https://derekguzman.substack.com" target="_blank" rel="noopener"><h3>Unsponsored Indecency</h3><span class="tag">Media · Culture</span><p class="deck">On saying what sponsored media won't.</p></a></li>
+    </ul>
+    <a class="sub" href="https://derekguzman.substack.com" target="_blank" rel="noopener">Read on Substack →</a>
+  </div>
+</section>
+
+<section class="fiction" id="fiction">
+  <div class="wrap fic-grid">
+    <div>
+      <span class="k2">Novel in progress</span>
+      <div class="fic-title">@hack.craft<span class="cur" aria-hidden="true"></span></div>
+      <p>An occult cyberpunk novel about code, ritual, and the people who mistake one for the other.</p>
+    </div>
+    <div class="meter" aria-label="About 73,000 words drafted">
+      <div class="big" id="count">73,000</div>
+      <div class="cap"><span>words drafted</span><span>since summer 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="builds">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k2">Recent builds</span><h2>Sites I've <em>made.</em></h2></div>
+      <p>Concept projects for fictional businesses, designed, written, and hand-coded to show how I work.</p>
+    </div>
+    <ul class="essays">
+      <li class="essay"><a href="/ridgeway-air/"><h3>Ridgeway Heating &amp; Air</h3><span class="tag">HVAC · Redesign</span><p class="deck">A dated, call-only site rebuilt around upfront prices and booking. Includes a before/after toggle.</p></a></li>
+      <li class="essay"><a href="/second-pour/"><h3>Second Pour Coffee</h3><span class="tag">Café · New site</span><p class="deck">A neighborhood café site with live open hours, a brew-card menu, and order-ahead pickup.</p></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k2">Work with me</span><h2>Two ways <em>in.</em></h2></div>
+      <p>Fixed scope, fixed price, agreed before I start.</p>
+    </div>
+    <div class="offers">
+      <article class="offer">
+        <span class="k2">For small businesses</span>
+        <h3>A website that's already written</h3>
+        <p>Design, build, and copy in one project, so you're not left filling in placeholder text.</p>
+        <ul><li>Redesigns of dated sites</li><li>Landing pages and five-page sites</li><li>Mobile-first, fast, and easy to hand off</li></ul>
+      </article>
+      <article class="offer">
+        <span class="k2">For editors &amp; teams</span>
+        <h3>Writing and editing</h3>
+        <p>Reported features, essays, and clear explainers on technology, labor, and the economy.</p>
+        <ul><li>Features and op-eds</li><li>Explainers and long-form edits</li><li>Ghostwriting with a point of view</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <span class="k2">Say something</span>
+    <h2>Let's <em>talk.</em></h2>
+    <div class="links">
+      <a class="pill" href="https://derekguzman.substack.com" target="_blank" rel="noopener">Substack</a>
+      <a class="pill" href="https://github.com/derekZero" target="_blank" rel="noopener">GitHub</a>
+      <a class="pill" href="https://www.upwork.com" target="_blank" rel="noopener">Hire me on Upwork</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Derek Guzman · Austin, Texas</span><span>Designed, written &amp; built by hand</span></div></footer>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Manifesto: wrap words, light them as the block scrolls through the viewport
+  var p=document.getElementById('mani');
+  var hl={"nobody":1,"wrote":1,"them.":1,"keep":1,"going.":1};
+  p.innerHTML=p.textContent.split(' ').map(function(w){return '<span class="w'+(hl[w]?' hl':'')+'">'+w+'</span>'}).join(' ');
+  var words=[].slice.call(p.querySelectorAll('.w'));
+  function light(){
+    var r=p.getBoundingClientRect(), vh=window.innerHeight;
+    var prog=(vh*0.85-r.top)/(r.height+vh*0.35);
+    prog=Math.max(0,Math.min(1,prog));
+    var n=Math.round(prog*words.length);
+    words.forEach(function(w,i){w.classList.toggle('on',i<n)});
+  }
+  if(reduce){words.forEach(function(w){w.classList.add('on')})}
+  else{window.addEventListener('scroll',light,{passive:true});window.addEventListener('resize',light);light();}
+
+  // Word meter
+  var count=document.getElementById('count');
+  function run(){
+    if(reduce)return;
+    var start=null;
+    function step(ts){ if(!start)start=ts; var t=Math.min(1,(ts-start)/1600); var e=1-Math.pow(1-t,3);
+      count.textContent=Math.round(73000*e).toLocaleString('en-US'); if(t<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){run();io.disconnect();} },{threshold:.4});
+    io.observe(document.querySelector('.meter'));
+  } else run();
+})();
+</script>
+
+</body>
+</html>
