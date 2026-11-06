@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Second Pour Coffee</title>
+<meta name="description" content="Concept website for a fictional café, by Derek Guzman.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a full-width wordmark hero with a spinning badge, a bake-of-the-day ticker, a tabbed menu that reads like a brew card, then visit + order-ahead. Single committed look. */
+:root{
+  --milk:#F1ECF5;
+  --cream:#FBF9FC;
+  --ink:#1D1830;
+  --muted:#5E5672;
+  --cobalt:#2638D9;
+  --berry:#C93F6B;
+  --line:#D9D0E2;
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--milk);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+
+.concept{background:var(--ink);color:var(--milk);font-family:var(--mono);font-size:12px;letter-spacing:.05em}
+.concept .wrap{padding-block:9px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px}
+.brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none}
+nav{display:flex;gap:22px;font-weight:500;font-size:15px}
+nav a{text-decoration:none}
+nav a:hover{color:var(--cobalt)}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;padding:7px 12px;border-radius:999px;background:var(--cream);border:1px solid var(--line);white-space:nowrap}
+.status i{width:8px;height:8px;border-radius:50%;background:#2FA36B;box-shadow:0 0 0 4px rgba(47,163,107,.18)}
+.status.closed i{background:var(--berry);box-shadow:0 0 0 4px rgba(201,63,107,.18)}
+@media (max-width:720px){nav{display:none}}
+
+/* hero */
+.hero{position:relative;padding-block:10px 40px}
+.word{font-family:var(--display);font-weight:800;font-size:clamp(78px,19.5vw,268px);line-height:.8;letter-spacing:-.065em;margin:0;color:var(--ink);white-space:nowrap}
+.word .o{color:var(--cobalt);display:inline-block;transform-origin:50% 60%;animation:wobble 6s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
+.word.two{text-align:right;margin-top:-.04em}
+.hero-row{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;margin-top:28px}
+.hero-row p{margin:0;font-size:clamp(17px,1.5vw,20px);max-width:36ch}
+.hero-row .right{justify-self:end;text-align:right;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.badge{width:150px;height:150px;position:relative;flex:none;max-width:100%}
+.badge svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.badge .cup{position:absolute;inset:0;display:grid;place-items:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steam path{stroke-dasharray:40;animation:steam 2.6s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:.6s}
+.steam path:nth-child(3){animation-delay:1.2s}
+@keyframes steam{0%{stroke-dashoffset:40;opacity:0}40%{opacity:1}100%{stroke-dashoffset:-40;opacity:0}}
+@media (max-width:760px){.hero-row{grid-template-columns:1fr;justify-items:start}.hero-row .right{justify-self:start;text-align:left}}
+
+/* ticker */
+.ticker{background:var(--cobalt);color:#fff;overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);margin-block:20px 10px;width:104%;margin-left:-2%}
+.ticker .track{display:inline-flex;gap:34px;padding-block:14px;font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,34px);letter-spacing:-.02em;animation:tick 30s linear infinite}
+.ticker .track span{display:inline-flex;align-items:center;gap:34px}
+.ticker .track span::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--berry)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section{padding-block:84px}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,96px);line-height:.88;letter-spacing:-.05em;margin:0 0 18px;text-wrap:balance}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* menu */
+.menu-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
+.tabs{display:flex;gap:6px;background:var(--cream);border:1px solid var(--line);padding:5px;border-radius:999px;flex-wrap:wrap}
+.tabs button{font:500 15px var(--body);border:0;background:transparent;padding:9px 18px;border-radius:999px;cursor:pointer;color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--milk)}
+.items{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.item{display:grid;grid-template-columns:1.2fr 1.3fr auto;gap:20px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--line);transition:background .25s ease,padding .25s ease}
+.item:hover{background:var(--cream);padding-inline:14px}
+.item h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.8vw,34px);letter-spacing:-.03em;margin:0;line-height:1}
+.item p{margin:0;color:var(--muted);min-width:0}
+.item .spec{display:block;font-family:var(--mono);font-size:12.5px;color:var(--cobalt);margin-top:6px}
+.item .pr{font-family:var(--mono);font-size:18px;font-variant-numeric:tabular-nums}
+@media (max-width:680px){.item{grid-template-columns:1fr auto}.item p{grid-column:1/-1;grid-row:2}}
+
+/* beans */
+.beans{background:var(--ink);color:var(--milk)}
+.beans .kicker{color:#B8AECB}
+.bean-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.bean-card{background:var(--milk);color:var(--ink);border-radius:20px;padding:30px;transform:rotate(1.5deg);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);max-width:100%}
+.bean-card h3{font-family:var(--display);font-weight:800;font-size:44px;letter-spacing:-.04em;margin:6px 0 16px;line-height:.95}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin:0}
+.facts div{border-top:1px solid var(--line);padding-top:8px;min-width:0}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-weight:600}
+.notes{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.notes span{padding:6px 12px;border-radius:999px;background:var(--cream);border:1px solid var(--line);font-size:14px}
+.bean-copy p{font-size:18px;color:#D8D0E4;max-width:42ch}
+@media (max-width:820px){.bean-grid{grid-template-columns:1fr}.bean-card{transform:none}}
+
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:12px 4px;border-bottom:1px solid var(--line);font-size:17px}
+.hours td:last-child{text-align:right;font-family:var(--mono);font-size:15px}
+.hours tr.today td{color:var(--cobalt);font-weight:600}
+.hours tr.today td:first-child::after{content:" · today";font-family:var(--mono);font-size:12px;font-weight:400}
+.order{background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.order h3{font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.03em;margin:0;line-height:1}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slots input{position:absolute;opacity:0;width:1px;height:1px}
+.slots span{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:var(--mono);font-size:14px;cursor:pointer}
+.slots input:checked+span{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.slots input:focus-visible+span{outline:3px solid var(--cobalt);outline-offset:2px}
+.order label{font-size:14px;font-weight:600;display:flex;flex-direction:column;gap:6px}
+.order select,.order input[type=text]{font:16px var(--body);padding:12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);width:100%}
+.go{font:600 16px var(--body);background:var(--ink);color:var(--milk);border:0;border-radius:999px;padding:15px 22px;cursor:pointer;transition:transform .2s ease}
+.go:hover{transform:translateY(-2px)}
+.done{font-family:var(--mono);font-size:14px;color:var(--cobalt);margin:0;min-height:1.4em}
+@media (max-width:820px){.visit-grid{grid-template-columns:1fr}}
+
+footer{border-top:2px solid var(--ink);padding-block:28px 34px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<div class="concept"><div class="wrap"><span>CONCEPT PROJECT · FICTIONAL CAFÉ</span><a href="/" style="color:inherit">Designed &amp; built by Derek Guzman</a></div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Second Pour</a>
+    <nav aria-label="Main"><a href="#menu">Menu</a><a href="#beans">Beans</a><a href="#visit">Visit</a></nav>
+    <span class="status" id="status"><i></i><span id="status-text">Open until 3 pm</span></span>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding-top:8px">
+  <div class="wrap">
+    <h1 class="word" aria-label="Second Pour">Sec<span class="o">o</span>nd</h1>
+    <div class="word two" aria-hidden="true">P<span class="o">o</span>ur.</div>
+    <div class="hero-row">
+      <p>Small-batch coffee roasted every Tuesday, pastry laminated by hand before sunrise, and a corner table that gets the morning light.</p>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+          <circle cx="100" cy="100" r="98" fill="#2638D9"/>
+          <text fill="#F1ECF5" font-family="DM Mono, monospace" font-size="15" letter-spacing="4.2"><textPath href="#circ">ROASTED TUESDAYS · BAKED AT 5 AM · CEDAR MILL TX ·</textPath></text>
+        </svg>
+        <div class="cup">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <g class="steam" fill="none" stroke="#F1ECF5" stroke-width="2.5" stroke-linecap="round"><path d="M24 22c-3-4 3-6 0-10"/><path d="M32 22c-3-4 3-6 0-10"/><path d="M40 22c-3-4 3-6 0-10"/></g>
+            <path d="M16 28h32v8a14 14 0 0 1-14 14h-4A14 14 0 0 1 16 36z" fill="#F1ECF5"/>
+            <path d="M48 31h3a5 5 0 0 1 0 10h-4" fill="none" stroke="#F1ECF5" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="right">88 Juniper Row<br>Cedar Mill, TX<br>Walk-ins all day</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-label="Today's bakes">
+  <div class="track">
+    <span>Cardamom knots</span><span>Brown-butter croissant</span><span>Pecan sticky bun</span><span>Jalapeño cheddar kolache</span><span>Olive oil citrus loaf</span>
+    <span>Cardamom knots</span><span>Brown-butter croissant</span><span>Pecan sticky bun</span><span>Jalapeño cheddar kolache</span><span>Olive oil citrus loaf</span>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div><span class="kicker">The menu</span><h2>Pull, pour,<br>or pastry.</h2></div>
+      <div class="tabs" role="tablist" aria-label="Menu sections">
+        <button role="tab" id="tab-espresso" aria-selected="true" aria-controls="panel">Espresso</button>
+        <button role="tab" id="tab-filter" aria-selected="false" aria-controls="panel">Filter</button>
+        <button role="tab" id="tab-bakery" aria-selected="false" aria-controls="panel">Bakery</button>
+      </div>
+    </div>
+    <ul class="items" id="panel" role="tabpanel" aria-live="polite"></ul>
+  </div>
+</section>
+
+<section class="beans" id="beans">
+  <div class="wrap bean-grid">
+    <div class="bean-copy">
+      <span class="kicker">On the grinder this week</span>
+      <h2>Roasted<br>four days ago.</h2>
+      <p>We roast in 12-pound batches and rest every bag for at least three days before it hits the grinder. Bags print the roast date, not a "best by" six months out.</p>
+    </div>
+    <div class="bean-card">
+      <span class="kicker">Single origin · Filter &amp; espresso</span>
+      <h3>Huila, Colombia</h3>
+      <dl class="facts">
+        <div><dt>Producer</dt><dd>La Esperanza co-op</dd></div>
+        <div><dt>Altitude</dt><dd>1,750 m</dd></div>
+        <div><dt>Process</dt><dd>Washed</dd></div>
+        <div><dt>Roasted</dt><dd id="roast">Sun, Nov 1</dd></div>
+        <div><dt>Espresso</dt><dd>18 g → 38 g · 29 s</dd></div>
+        <div><dt>Bag</dt><dd>12 oz · $19</dd></div>
+      </dl>
+      <div class="notes"><span>Red apple</span><span>Panela</span><span>Milk chocolate</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="kicker">Visit</span>
+      <h2>Come early.<br>Knots sell out.</h2>
+      <table class="hours" id="hours"><tbody></tbody></table>
+    </div>
+    <form class="order" id="order" novalidate>
+      <span class="kicker">Order ahead</span>
+      <h3>Skip the line.</h3>
+      <label for="o-drink">Drink
+        <select id="o-drink"><option>Cortado · $4.75</option><option>Oat latte · $5.75</option><option>Batch brew · $3.50</option><option>Cold brew · $4.50</option></select>
+      </label>
+      <label for="o-name">Name on the cup<input type="text" id="o-name" placeholder="Sam" autocomplete="given-name"></label>
+      <div>
+        <span style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Pickup</span>
+        <div class="slots" role="group" aria-label="Pickup time">
+          <label><input type="radio" name="slot" id="slot-10" value="in 10 min" checked><span>10 min</span></label>
+          <label><input type="radio" name="slot" id="slot-20" value="in 20 min"><span>20 min</span></label>
+          <label><input type="radio" name="slot" id="slot-30" value="in 30 min"><span>30 min</span></label>
+          <label><input type="radio" name="slot" id="slot-45" value="in 45 min"><span>45 min</span></label>
+        </div>
+      </div>
+      <button class="go" type="submit">Place pickup order</button>
+      <p class="done" id="done">Concept demo: no order is placed.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Second Pour is a fictional café. Concept site by Derek Guzman.</span><span>Hand-built in HTML, CSS &amp; JavaScript</span></div></footer>
+
+<script>
+(function(){
+  var MENU={
+    espresso:[
+      ["Espresso","Huila, Colombia. Bright, then chocolate.","18 g in · 38 g out · 29 s","3.50"],
+      ["Cortado","Equal parts espresso and steamed milk.","double shot · 4 oz","4.75"],
+      ["Oat latte","House oat milk, poured thin so you taste the coffee.","double shot · 10 oz","5.75"],
+      ["Cardamom honey latte","Local wildflower honey, freshly ground cardamom.","double shot · 12 oz","6.25"]
+    ],
+    filter:[
+      ["Batch brew","Rotating single origin, brewed every 30 minutes.","1:16 · 93 °C · 12 oz","3.50"],
+      ["Pour-over","Made to order on a flat-bottom dripper.","22 g : 350 g · 3:30 total","5.50"],
+      ["Cold brew","Steeped 18 hours, served over one big cube.","1:8 concentrate, cut 1:1","4.50"],
+      ["Coffee flight","Same bean three ways: espresso, filter, cold.","three 3 oz pours","8.00"]
+    ],
+    bakery:[
+      ["Cardamom knot","Swedish-style, glazed with cardamom sugar.","baked 5 am · usually gone by 10","4.25"],
+      ["Brown-butter croissant","72-hour laminated dough, 27 layers.","baked 5 am and 9 am","4.75"],
+      ["Jalapeño cheddar kolache","A Central Texas staple with house sausage.","savory · warm until 11","4.50"],
+      ["Olive oil citrus loaf","Dense, bright, keeps for days. Sold by the slice.","vegan","3.75"]
+    ]
+  };
+  var panel=document.getElementById('panel');
+  function render(key){
+    panel.innerHTML=MENU[key].map(function(r){
+      return '<li class="item"><h3>'+r[0]+'</h3><p>'+r[1]+'<span class="spec">'+r[2]+'</span></p><span class="pr">$'+r[3]+'</span></li>';
+    }).join('');
+  }
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===t)});
+    render(t.id.replace('tab-',''));
+  })});
+  render('espresso');
+
+  // Hours + live open status in Central Time
+  var HOURS=[["Sunday",8,14],["Monday",7,15],["Tuesday",7,15],["Wednesday",7,15],["Thursday",7,15],["Friday",7,16],["Saturday",8,16]];
+  function fmt(h){var s=h>=12?'pm':'am';var hh=h%12||12;return hh+' '+s}
+  var now=new Date();
+  var day=now.getDay(), hr=now.getHours()+now.getMinutes()/60;
+  try{
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(now);
+    var map={};parts.forEach(function(p){map[p.type]=p.value});
+    day=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(map.weekday);
+    hr=(parseInt(map.hour,10)%24)+parseInt(map.minute,10)/60;
+  }catch(e){}
+  var tb=document.querySelector('#hours tbody');
+  tb.innerHTML=HOURS.map(function(h,i){return '<tr'+(i===day?' class="today"':'')+'><td>'+h[0]+'</td><td>'+fmt(h[1])+' – '+fmt(h[2])+'</td></tr>'}).join('');
+  var st=document.getElementById('status'), stt=document.getElementById('status-text'), today=HOURS[day]||HOURS[1];
+  if(hr>=today[1] && hr<today[2]){ stt.textContent='Open until '+fmt(today[2]); }
+  else { st.classList.add('closed'); var next=hr<today[1]?today:HOURS[(day+1)%7]; stt.textContent='Closed · opens '+fmt(next[1])+(hr<today[1]?'':' tomorrow'); }
+
+  // Roast date = four days ago
+  var r=new Date(now.getTime()-4*864e5);
+  document.getElementById('roast').textContent=r.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+
+  document.getElementById('order').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('o-name').value.trim()||'friend';
+    var d=document.getElementById('o-drink').value.split(' · ')[0];
+    var s=document.querySelector('input[name=slot]:checked').value;
+    document.getElementById('done').textContent='Got it, '+n+'. Your '+d.toLowerCase()+' would be ready '+s+'.';
+  });
+})();
+</script>
+
+</body>
+</html>
